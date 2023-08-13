@@ -398,14 +398,14 @@ export class StateBarComponent implements OnInit {
    */
   toggleAllPartsBox(): void {
     if (this.isAllPartsCollapsed) {
-      if (!this.isConnectedToJetson) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Jetson Nano is not connected',
-        });
-        return;
-      }
+      // if (!this.isConnectedToJetson) {
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Oops...',
+      //     text: 'Jetson Nano is not connected',
+      //   });
+      //   return;
+      // }
       this.showStatePartsCheckButton = false;
       this.checkingAllParts = true;
     } else {
@@ -423,14 +423,14 @@ export class StateBarComponent implements OnInit {
    */
   toggleStatePartsBox(): void {
     if (this.isStatePartsCollapsed) {
-      if (!this.isConnectedToJetson) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Jetson Nano is not connected',
-        });
-        return;
-      }
+      // if (!this.isConnectedToJetson) {
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Oops...',
+      //     text: 'Jetson Nano is not connected',
+      //   });
+      //   return;
+      // }
       this.showAllPartsCheckButton = false;
       this.checkingStateParts = true;
     } else {
