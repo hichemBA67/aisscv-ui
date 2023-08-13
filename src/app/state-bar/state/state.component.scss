@@ -1,0 +1,27 @@
+/* state.component.css */
+.state {
+  width: 30px;
+  height: 30px; /* Increase the height for a rectangular appearance */
+  background-color: white;
+  margin-right: 1rem;
+  display: inline-flex; /* Use flex to center the number vertically */
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #000000; /* Add a border for a clearer rectangle */
+  border-radius: 50%; /* Add rounded corners */
+  font-weight: bold;
+  font-size: 14px; /* Adjust font size */
+  transition: all 0.3s ease-in-out;
+  color: black;
+}
+
+.active {
+  background-color: #d01012;
+  border: 3px solid #d01012;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  border: 3px solid #f6ec36; /* Yellow outline */
+  color: white;
+  transform: scale(1.2);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}

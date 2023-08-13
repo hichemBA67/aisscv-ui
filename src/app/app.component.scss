@@ -1,0 +1,28 @@
+table {
+  width: 100%; /* Take the full width of its container */
+  border-collapse: collapse; /* Ensures that borders don't double up */
+  border: 1px solid #ddd; /* A light border around the table */
+  font-size: 16px; /* Adjust as needed */
+}
+
+th,
+td {
+  border: 1px solid #ddd; /* A light border around each cell */
+  padding: 8px 12px; /* Padding inside each cell */
+  text-align: left; /* Align text to the left; adjust as needed */
+}
+
+thead th {
+  background-color: #f2f2f2; /* A light gray background for the header row */
+  font-weight: bold; /* Bold font for the header row */
+}
+
+/* Add a hover effect for rows */
+tbody tr:hover {
+  background-color: #f5f5f5; /* A slightly lighter gray background on hover */
+}
+
+pre {
+  white-space: pre-wrap; /* CSS3 property to make the content wrap */
+  word-wrap: break-word; /* For IE */
+}

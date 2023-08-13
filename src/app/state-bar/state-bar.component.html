@@ -1,0 +1,180 @@
+<!-- Top Button Container -->
+<div class="button-container">
+  <!-- Toggle for Assembly/Disassembly Mode -->
+  <div class="switch-button-container">
+    <mat-slide-toggle
+      color="warn"
+      hideIcon="true"
+      (change)="toggleAssemblyMode()"
+    >
+      {{ isAssemblyMode ? "Assembly" : "Disassembly" }} Mode
+    </mat-slide-toggle>
+  </div>
+
+  <!-- Connect to Jetson Nano Button (Visible if not connected) -->
+  <button
+    disabled="true"
+    *ngIf="!isConnectedToJetson"
+    mat-fab
+    extended
+    class="jetson-button"
+    (click)="connectToJetson()"
+  >
+    <img src="../../assets/img/nvidia.png" alt="Connect to Jetson Nano" />
+    Connect to Jetson Nano
+  </button>
+
+  <!-- Disconnect from Jetson Nano Button (Visible if connected) -->
+  <button
+    *ngIf="isConnectedToJetson"
+    mat-fab
+    extended
+    class="jetson-button"
+    (click)="disconnectJetson()"
+  >
+    <img src="../../assets/img/nvidia.png" alt="Disconnect from Jetson Nano" />
+    Disconnect from Jetson Nano
+  </button>
+</div>
+
+<!-- Main Content Card -->
+<div class="card">
+  <!-- State Bar to Show Active State -->
+  <div class="state-bar">
+    <ng-container *ngFor="let state of stateNumbers; let i = index">
+      <app-state
+        [isActive]="i === activeState - 1"
+        [stateNumber]="state"
+      ></app-state>
+    </ng-container>
+  </div>
+
+  <!-- Confidence Percentage Display -->
+  <small>Confidence: {{ (stateConfidence * 100).toFixed(0) }} %</small>
+
+  <!-- Instruction and Parts Information -->
+  <div class="response-parts-container">
+    <!-- Instruction Box -->
+    <div class="instruction-box">
+      <h2>{{ nextStepText() }}</h2>
+      <pre>{{ stateDetected ? instructionAdvice : "No state detected" }}</pre>
+      <img
+        class="state-image"
+        [src]="getImageUrl()"
+        alt="{{
+          isAssemblyMode ? 'Assembly' : 'Disassembly'
+        }} Instruction Image"
+      />
+    </div>
+
+    <!-- Parts Information Box -->
+    <div class="parts-box">
+      <h2>
+        {{
+          isAssemblyMode
+            ? "Parts needed for Assembly"
+            : "Parts disassembled in this State"
+        }}:
+      </h2>
+      <div *ngIf="stateDetected && partsNeeded.length !== 0">
+        <table>
+          <thead>
+            <tr>
+              <th>Part</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let part of partsNeeded">
+              <td>{{ part?.part }}</td>
+              <td>{{ part?.quantity }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="partsNeeded.length === 0 && stateDetected">None</div>
+      <div *ngIf="!stateDetected">No State detected</div>
+    </div>
+  </div>
+
+  <!-- Checks Box (Only if not in the last state) -->
+  <div class="checks-box" *ngIf="activeState !== 15">
+    <!-- Check Buttons Container at the Bottom -->
+    <div class="button-container-bottom">
+      <!-- Parts Completeness Check Button -->
+      <button
+        disabled="true"
+        *ngIf="showAllPartsCheckButton"
+        mat-fab
+        extended
+        color="primary"
+        class="check-buttons"
+        [class.checking]="checkingAllParts"
+        (click)="toggleAllPartsBox()"
+      >
+        <div class="flex-container">
+          <mat-icon class="close-icon">close</mat-icon>
+          <mat-spinner
+            *ngIf="checkingAllParts"
+            diameter="20"
+            color="warn"
+          ></mat-spinner>
+          <span>{{
+            isAllPartsCollapsed ? "Parts Completeness Check™" : "Analyzing"
+          }}</span>
+        </div>
+      </button>
+
+      <!-- State Parts Completeness Check Button -->
+      <button
+        disabled="true"
+        *ngIf="showStatePartsCheckButton"
+        mat-fab
+        extended
+        color="primary"
+        class="check-buttons"
+        [class.checking]="checkingStateParts"
+        (click)="toggleStatePartsBox()"
+      >
+        <div class="flex-container">
+          <mat-icon class="close-icon">close</mat-icon>
+          <mat-spinner
+            *ngIf="checkingStateParts"
+            diameter="20"
+            color="warn"
+          ></mat-spinner>
+          <span>{{
+            isStatePartsCollapsed
+              ? "State Parts Completeness Check™"
+              : "Analyzing"
+          }}</span>
+        </div>
+      </button>
+    </div>
+
+    <!-- All Parts Modal (Only when All Parts Box is Expanded) -->
+    <app-all-parts-box
+      *ngIf="!isAllPartsCollapsed"
+      [inferredStates]="circularPartsBuffer"
+      [checkAllParts]="checkingAllParts"
+    ></app-all-parts-box>
+
+    <!-- State Parts Modal (Only when State Parts Box is Expanded) -->
+    <app-state-parts-box
+      *ngIf="!isStatePartsCollapsed"
+      [inferredStates]="circularPartsBuffer"
+      [checkStateParts]="checkingStateParts"
+      [currentState]="activeState"
+      [partsNeeded]="partsNeeded"
+    ></app-state-parts-box>
+  </div>
+</div>
+
+<!-- Warning Box (For states 12 and 13) -->
+<div class="warning-box" *ngIf="activeState === 12 || activeState === 13">
+  <p>
+    WARNING: State 12 and State 13 are very similar and are only differentiated
+    by on <i>gray_short</i>. Try turning the robot around to get the best
+    analysis.
+  </p>
+</div>

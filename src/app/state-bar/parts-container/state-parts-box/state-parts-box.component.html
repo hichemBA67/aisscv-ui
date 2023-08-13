@@ -1,0 +1,49 @@
+<!-- Container for displaying the Lego parts status -->
+<div class="parts-box">
+  <!-- Title of the parts check section -->
+  <h2>State Parts Completeness Check™</h2>
+
+  <!-- Table showing the required, found, and missing Lego parts -->
+  <table>
+    <!-- Table Header -->
+    <thead>
+      <tr>
+        <th></th>
+        <!-- Icon Column (✅ or ❌) -->
+        <th>Part</th>
+        <!-- Name of the Lego part -->
+        <th>Required</th>
+        <!-- Number of parts required -->
+        <th>Found</th>
+        <!-- Number of parts found -->
+        <th>Missing</th>
+        <!-- Number of parts missing -->
+      </tr>
+    </thead>
+
+    <!-- Table Body -->
+    <tbody>
+      <!-- Iterate over each Lego part. Only display rows for parts with a count greater than 0 -->
+      <ng-container *ngFor="let item of stateParts | keyvalue">
+        <tr *ngIf="item.value > 0">
+          <!-- Display a checkmark (✅) if the found parts equal required parts, otherwise display a cross (❌) -->
+          <td>
+            {{ getFoundPartValue(item.key) >= item.value ? "✅" : "❌" }}
+          </td>
+          <!-- Display the part's name, required count, found count, and missing count respectively -->
+          <td>{{ item.key }}</td>
+          <td>{{ item.value }}</td>
+          <td>{{ getFoundPartValue(item.key) }}</td>
+          <td>{{ getMissingPartValue(item.key) }}</td>
+        </tr>
+      </ng-container>
+
+      <!-- Row showing the confidence value of the parts check -->
+      <tr>
+        <td colspan="5">
+          <small>Cofindence: {{ (checkConfidence * 100).toFixed(0) }} %</small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

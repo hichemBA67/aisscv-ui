@@ -1,0 +1,12 @@
+<aside class="sidebar" [ngClass]="{'collapsed': isCollapsed}">
+  <button mat-icon-button (click)="toggleSidebar()">
+    <mat-icon>{{ isCollapsed ? 'menu' : 'close' }}</mat-icon>
+  </button>
+  <nav class="nav">
+    <ul>
+      <li><a [hidden]="isCollapsed" href="#">Home</a></li>
+      <li><a [hidden]="isCollapsed" href="#">About</a></li>
+      <li><a [hidden]="isCollapsed" href="#">Services</a></li>
+    </ul>
+  </nav>
+</aside>

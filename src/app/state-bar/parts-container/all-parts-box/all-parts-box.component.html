@@ -1,0 +1,31 @@
+<div class="parts-box">
+  <h2>Parts Completeness Check™</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Part</th>
+        <th>Required</th>
+        <th>Found</th>
+        <th>Missing</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of fullSet | keyvalue">
+        <td>
+          {{ foundParts[item.key] >= item.value ? "✅" : "❌" }}
+        </td>
+        <td>{{ item.key }}</td>
+        <td>{{ item.value }}</td>
+        <td>{{ foundParts[item.key] }}</td>
+        <td>{{ missingParts[item.key] }}</td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <small>Cofindence: {{ (checkConfidence * 100).toFixed(0) }} %</small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

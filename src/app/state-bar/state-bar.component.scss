@@ -1,0 +1,220 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  display: flex;
+  margin-bottom: 5rem;
+}
+
+.state-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.response-parts-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.instruction-box,
+.parts-box {
+  flex: 2;
+  padding: 2rem;
+  border: 3px solid #d01012;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+.instruction-box h2,
+.parts-box h2 {
+  margin-bottom: 10px;
+}
+
+.part-label,
+.quantity-label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+  align-items: center;
+  flex-direction: row;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.button-container-bottom {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  flex-direction: row;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.json-output {
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow: auto;
+  max-height: 300px;
+  font-family: monospace;
+}
+
+.instruction-box {
+  background-color: #d01012;
+  padding: 2rem;
+  color: white;
+}
+
+.result-box {
+  display: none;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.result-box.show-content {
+  display: block;
+}
+
+.close-button {
+  float: right;
+  cursor: pointer;
+  color: #333;
+  background-color: transparent;
+  border: none;
+}
+
+.result-box.hide-content .content-box {
+  display: none;
+}
+
+.state-image {
+  width: 30rem;
+  height: auto;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.jetson-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000;
+  color: #76b900;
+}
+
+.jetson-button img {
+  vertical-align: middle;
+  margin-right: 8px;
+  width: 2.5rem;
+  height: auto;
+}
+
+/* Base table styling */
+table {
+  width: 100%; /* Take the full width of its container */
+  border-collapse: collapse; /* Ensures that borders don't double up */
+  border: 1px solid #ddd; /* A light border around the table */
+  font-size: 16px; /* Adjust as needed */
+}
+
+th,
+td {
+  border: 1px solid #ddd; /* A light border around each cell */
+  padding: 8px 12px; /* Padding inside each cell */
+  text-align: left; /* Align text to the left; adjust as needed */
+}
+
+thead th {
+  background-color: #f2f2f2; /* A light gray background for the header row */
+  font-weight: bold; /* Bold font for the header row */
+}
+
+/* Add a hover effect for rows */
+tbody tr:hover {
+  background-color: #f5f5f5; /* A slightly lighter gray background on hover */
+}
+
+pre {
+  white-space: pre-wrap; /* CSS3 property to make the content wrap */
+  word-wrap: break-word; /* For IE */
+}
+
+button {
+  margin: 1rem;
+}
+
+.check-buttons {
+  background-color: #000;
+  color: white;
+  min-width: 10rem;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center; /* Vertically align items to the center */
+  gap: 8px; /* Add some gap between the spinner and the text */
+}
+
+/* Optionally, if you want to ensure the spinner and the text are vertically aligned perfectly */
+mat-spinner {
+  margin-bottom: 3px; /* Adjust this based on your spinner's design and requirement */
+}
+
+.check-buttons .close-icon {
+  display: none;
+}
+
+.check-buttons.checking:hover .close-icon {
+  display: block;
+}
+
+.check-buttons.checking:hover .flex-container > *:not(.close-icon) {
+  display: none;
+}
+
+.checks-box {
+  justify-content: space-between;
+}
+
+.warning-box {
+  position: fixed; /* Fixed positioning to place it at the bottom of the viewport */
+  bottom: 0; /* Stick to the bottom */
+  left: 0; /* Start from the left side */
+  width: 100%; /* Full width to span across the screen */
+  padding: 15px 0; /* Padding on top and bottom */
+  background-color: #f44336; /* A red background color, you can adjust as needed */
+  color: white; /* White text color */
+  text-align: center; /* Center the text */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* A slight shadow for a lifting effect */
+  font-weight: bold; /* Make the text bold */
+  z-index: 1000; /* Ensure it's above other elements */
+  margin-top: 5rem;
+}
+
+/* Optional: This will give a small margin to the paragraph inside the warning box */
+.warning-box p {
+  margin: 0;
+}
