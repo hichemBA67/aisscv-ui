@@ -4,6 +4,8 @@ Welcome to the Angular front-end repository for our AISSCV-LEGO prototype. This 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.4.
 
+> **_NOTE:_** A static version is deployed [here](https://aisscv-ui.vercel.app/)
+
 ## Setting up the Project
 
 Before diving into the commands and development processes, ensure you have all the necessary packages installed.
